@@ -4,6 +4,6 @@ io.on("connection", (socket) => {
   console.log("Usuário conectado")
 
   socket.on("texto", (texto) => {
-    console.log(texto)
+    socket.broadcast.emit("texto-cliente", texto)
   })
 })
