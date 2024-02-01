@@ -11,7 +11,7 @@ titulo.textContent = nomeDocumento || "Documento sem título";
 selecionarDocumento(nomeDocumento);
 
 text.addEventListener("keyup", () => {
-  enviarTexto(text.value);
+  enviarTexto({ texto: text.value, nomeDocumento });
 })
 
 function atualizaTexto(texto) {
