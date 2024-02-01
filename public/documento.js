@@ -1,6 +1,14 @@
-import { enviarTexto } from "./socket-front-documento";
+import { enviarTexto, selecionarDocumento } from "./socket-front-documento.js";
 
 const text = document.getElementById("editor-texto");
+const titulo = document.getElementById("titulo-documento")
+
+const parametros = new URLSearchParams(window.location.search);
+const nomeDocumento = parametros.get("nome");
+
+titulo.textContent = nomeDocumento || "Documento sem título";
+
+selecionarDocumento(nomeDocumento);
 
 text.addEventListener("keyup", () => {
   enviarTexto(text.value);
