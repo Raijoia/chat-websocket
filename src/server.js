@@ -3,6 +3,7 @@ import url from "url";
 import path from "path";
 import http from "http";
 import { Server } from "socket.io";
+import exp from "constants";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,6 +20,5 @@ servidorHttp.listen(PORT, () => {
 })
 
 const io = new Server(servidorHttp);
-io.on("connection", (socket) => {
-  console.log("Usuário conectado");
-})
+
+export default io;
