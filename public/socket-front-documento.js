@@ -3,7 +3,7 @@ import { atualizaTexto } from "./documento.js"
 const socket = io()
 
 function selecionarDocumento(nomeDocumento) {
-  socket.emit("selecionar-documento", nomeDocumento)
+  socket.emit("selecionar-documento", nomeDocumento, (texto) => atualizaTexto(texto))
 }
 
 function enviarTexto(dados) {
