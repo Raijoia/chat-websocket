@@ -29,7 +29,12 @@ io.on("connection", (socket) => {
   })
 
   socket.on("texto", ({ texto, nomeDocumento }) => {
-    socket.to(nomeDocumento).emit("texto-cliente", texto)
+    const documento = encontrarDocumento(nomeDocumento)
+
+    if(documento) {
+      documento.texto = texto
+      socket.to(nomeDocumento).emit("texto-cliente", texto)
+    }
   })
 })
 
