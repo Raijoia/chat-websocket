@@ -1,4 +1,4 @@
-import { documentosCollection } from "./dbConnect.js"
+import { encontrarDocumento } from "./documentosDb.js"
 import io from "./server.js"
 
 io.on("connection", (socket) => {
@@ -25,10 +25,3 @@ io.on("connection", (socket) => {
     }
   })
 })
-
-function encontrarDocumento(nome) {
-  const documento = documentosCollection.findOne({
-    nome
-  })
-  return documento
-}
