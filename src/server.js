@@ -3,7 +3,9 @@ import url from "url";
 import path from "path";
 import http from "http";
 import { Server } from "socket.io";
-import exp from "constants";
+import "dotenv/config"
+
+import "./dbConnect.js"
 
 const app = express();
 const PORT = process.env.PORT || 3000;
