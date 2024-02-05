@@ -1,4 +1,4 @@
-import { encontrarDocumento } from "./documentosDb.js"
+import { atualizarDocumento, encontrarDocumento } from "./documentosDb.js"
 import io from "./server.js"
 
 io.on("connection", (socket) => {
@@ -9,18 +9,15 @@ io.on("connection", (socket) => {
 
     const documento = await encontrarDocumento(nomeDocumento)
 
-    console.log(documento)
-
     if (documento) {
       devolverTexto(documento.texto)
     }
   })
 
-  socket.on("texto", ({ texto, nomeDocumento }) => {
-    const documento = encontrarDocumento(nomeDocumento)
+  socket.on("texto", async ({ texto, nomeDocumento }) => {
+    const atualizacao = await atualizarDocumento(nomeDocumento, texto)
 
-    if(documento) {
-      documento.texto = texto
+    if (atualizacao.modifiedCount) {
       socket.to(nomeDocumento).emit("texto-cliente", texto)
     }
   })

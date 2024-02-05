@@ -7,4 +7,16 @@ function encontrarDocumento(nome) {
   return documento
 }
 
-export { encontrarDocumento }
+function atualizarDocumento(nome, texto) {
+  const atualizacao = documentosCollection.updateOne({
+    nome
+  }, {
+    $set: {
+      texto
+    }
+  })
+
+  return atualizacao
+}
+
+export { encontrarDocumento, atualizarDocumento }
