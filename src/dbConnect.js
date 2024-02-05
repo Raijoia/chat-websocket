@@ -1,4 +1,5 @@
 import { MongoClient } from "mongodb";
+import "dotenv/config"
 
 
 const cliente = new MongoClient(
@@ -10,7 +11,7 @@ let documentosCollection;
 try {
   await cliente.connect()
   const db = cliente.db("websockets")
-  const documentosCollection = db.collection("documentos")
+  documentosCollection = db.collection("documentos")
   console.log("conectou!")
 } catch (error) {
   console.error(error)
