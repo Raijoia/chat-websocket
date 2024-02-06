@@ -19,10 +19,16 @@ io.on("connection", (socket) => {
   })
 
   socket.on("adicionar-documento", async (nomeDocumento) => {
-    const documento = await criarDocumento(nomeDocumento)
+    const existe = await (encontrarDocumento(nomeDocumento)) !== null
 
-    if(documento.acknowledged) {
-      io.emit('adicionar-documento-interface', nomeDocumento)
+    if (existe) {
+      socket.emit("documento-existe", nomeDocumento);
+    } else {
+      const documento = await criarDocumento(nomeDocumento)
+  
+      if(documento.acknowledged) {
+        io.emit('adicionar-documento-interface', nomeDocumento)
+      }
     }
   })
 
