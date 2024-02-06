@@ -32,4 +32,17 @@ function atualizarDocumento(nome, texto) {
   return atualizacao
 }
 
-export { encontrarDocumento, atualizarDocumento, obterDocumentos, criarDocumento }
+function excluirDocumento(nome) {
+  const resultado = documentosCollection.deleteOne({
+    nome
+  })
+  return resultado
+}
+
+export {
+  encontrarDocumento,
+  atualizarDocumento,
+  obterDocumentos,
+  criarDocumento,
+  excluirDocumento,
+}

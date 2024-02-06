@@ -1,7 +1,8 @@
-import { enviarTexto, selecionarDocumento } from "./socket-front-documento.js";
+import { enviarTexto, excluirDocumento, selecionarDocumento } from "./socket-front-documento.js";
 
 const text = document.getElementById("editor-texto");
 const titulo = document.getElementById("titulo-documento")
+const buttonExcluir = document.getElementById("excluir-documento");
 
 const parametros = new URLSearchParams(window.location.search);
 const nomeDocumento = parametros.get("nome");
@@ -18,4 +19,15 @@ function atualizaTexto(texto) {
   text.value = texto;
 }
 
-export { atualizaTexto }
+buttonExcluir.addEventListener("click", () => {
+  excluirDocumento(nomeDocumento);
+})
+
+function alertAndRedirect(nome) {
+  if(nome === nomeDocumento) {
+    alert(`O documento ${nome} foi excluído`);
+    window.location.href = "/";
+  }
+}
+
+export { atualizaTexto, alertAndRedirect }

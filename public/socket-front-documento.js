@@ -1,4 +1,4 @@
-import { atualizaTexto } from "./documento.js"
+import { alertAndRedirect, atualizaTexto } from "./documento.js"
 
 const socket = io()
 
@@ -14,4 +14,12 @@ socket.on("texto-cliente", (texto) => {
   atualizaTexto(texto)
 })
 
-export { enviarTexto, selecionarDocumento }
+function excluirDocumento(nomeDocumento) {
+  socket.emit("excluir-documento", nomeDocumento)
+}
+
+socket.on("excluir-documento-interface", (nome) => {
+  alertAndRedirect(nome)
+})
+
+export { enviarTexto, selecionarDocumento, excluirDocumento }

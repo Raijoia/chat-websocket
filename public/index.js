@@ -17,10 +17,16 @@ form.addEventListener("submit", (event) => {
 
 function inserirLinkDocumento(nomeDocumento) {
   listaDocumento.innerHTML += `
-    <a href="documento.html?nome=${nomeDocumento}" class="list-group-item list-group-item-action">
+    <a href="documento.html?nome=${nomeDocumento}" class="list-group-item list-group-item-action" id="documento-${nomeDocumento}">
       ${nomeDocumento}
     </a>
   `
 }
 
-export { inserirLinkDocumento }
+function removerLinkDocumento(nomeDocumento)  {
+  const documento = document.getElementById(`documento-${nomeDocumento}`)
+
+  listaDocumento.removeChild(documento)
+}
+
+export { inserirLinkDocumento, removerLinkDocumento }
