@@ -1,5 +1,10 @@
 import { documentosCollection } from "./dbConnect.js"
 
+function obterDocumentos() {
+  const documentos = documentosCollection.find().toArray()
+  return documentos
+}
+
 function encontrarDocumento(nome) {
   const documento = documentosCollection.findOne({
     nome,
@@ -19,4 +24,4 @@ function atualizarDocumento(nome, texto) {
   return atualizacao
 }
 
-export { encontrarDocumento, atualizarDocumento }
+export { encontrarDocumento, atualizarDocumento, obterDocumentos }
